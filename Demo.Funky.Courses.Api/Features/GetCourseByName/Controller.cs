@@ -13,8 +13,8 @@ public class Controller : ControllerBase
         _mediator = mediator;
     }
     
-    [HttpGet("api/courses/name/{courseName}")]
-    public async Task<IActionResult> GetCourseByNameAsync([FromRoute] string courseName)
+    [HttpGet("api/courses/name/{courseName}", Name = nameof(GetCourseByName))]
+    public async Task<IActionResult> GetCourseByName([FromRoute] string courseName)
     {
         return (await _mediator.Send(new Request(courseName))).ToActionResult();
     }
