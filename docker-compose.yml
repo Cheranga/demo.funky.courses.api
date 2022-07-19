@@ -1,0 +1,25 @@
+version: '3.4'
+services:
+  api:
+    build:
+      dockerfile: Demo.Funky.Courses.Api/Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - database      
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DatabaseConfig__DatabaseConnectionString: "Server=database,1433;Database=CoursesDb;User Id=SA;Password=Pa55word123!"
+  
+  database:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55word123!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./coursedata/data:/var/opt/mssql/data
+      - ./coursedata/logs:/var/opt/mssql/log
+      - ./coursedata/secrets:/var/opt/mssql/secrets
+  

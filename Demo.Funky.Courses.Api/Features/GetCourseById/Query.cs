@@ -2,12 +2,4 @@
 
 namespace Demo.Funky.Courses.Api.Features.GetCourseById;
 
-public class Query : IQuery
-{
-    public string Id { get; }
-
-    public Query(string id)
-    {
-        Id = id;
-    }
-}
+public record Query (string Id) : IQuery;

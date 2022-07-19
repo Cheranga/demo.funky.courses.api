@@ -1,4 +1,6 @@
-﻿using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿using System.Data.SqlClient;
+using Dapper;
+using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
@@ -6,16 +8,27 @@ namespace Demo.Funky.Courses.Api.Features.GetCourseById;
 
 public class QueryHandler : IQueryHandler<Query, CourseDataModel>
 {
-    public Aff<CourseDataModel> GetAsync(Query query)
+    private readonly DatabaseConfig _config;
+
+    public QueryHandler(DatabaseConfig config)
     {
-        return TryOptionAsync(async () =>
-        {
-            await Task.Delay(TimeSpan.FromSeconds(2));
-            return new CourseDataModel
-            {
-                Id = Guid.NewGuid().ToString("N"),
-                Name = "C# Functional Programming"
-            };
-        }).ToAff();
+        _config = config;
     }
+
+    private static string CommandText => @"select * from tblCourses where id=@id";
+
+
+    public Aff<CourseDataModel> GetAsync(Query query) => GetCourseAsync(query);
+
+    // is there a better way to write this method?
+    private Aff<CourseDataModel> GetCourseAsync(Query query)=>
+        TryAsync(async () =>
+        {
+            using (var connection = new SqlConnection(_config.DatabaseConnectionString))
+            {
+                await connection.OpenAsync();
+                var dataModel = await connection.QueryFirstOrDefaultAsync<CourseDataModel>(CommandText, query);
+                return string.IsNullOrWhiteSpace(dataModel?.Id) ? new CourseDataModel() : dataModel;
+            }
+        }).ToAff();
 }
