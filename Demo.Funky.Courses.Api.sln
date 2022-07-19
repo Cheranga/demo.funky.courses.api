@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Funky.Courses.Api", "Demo.Funky.Courses.Api\Demo.Funky.Courses.Api.csproj", "{F3D23628-7228-48CC-9BAC-FBB1B1F03DF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Funky.Courses.Api.Tests", "Demo.Funky.Courses.Api.Tests\Demo.Funky.Courses.Api.Tests.csproj", "{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3D23628-7228-48CC-9BAC-FBB1B1F03DF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D23628-7228-48CC-9BAC-FBB1B1F03DF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D23628-7228-48CC-9BAC-FBB1B1F03DF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D23628-7228-48CC-9BAC-FBB1B1F03DF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
