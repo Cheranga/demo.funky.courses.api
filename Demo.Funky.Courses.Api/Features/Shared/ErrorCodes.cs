@@ -2,6 +2,7 @@
 
 public class ErrorCodes
 {
+    public const int CommandError = 666;
     public const int CourseNotFound = 404;
     public const int DataAccessError = 500;
 }

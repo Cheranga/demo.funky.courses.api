@@ -27,5 +27,6 @@ public static class WebApplicationBuilderExtensions
     {
         services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseById.Query, CourseDataModel>, CourseFeatures.GetCourseById.QueryHandler>();
         services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseByName.Query, CourseDataModel>, CourseFeatures.GetCourseByName.QueryHandler>();
+        services.AddSingleton<ICommandHandler<CourseFeatures.CreateCourse.Command>, CourseFeatures.CreateCourse.CommandHandler>();
     }
 }
