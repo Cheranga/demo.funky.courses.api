@@ -1,5 +1,5 @@
 
-.idea/.idea.Demo.Funky.Courses.Api/.idea/
+.idea/
 
 Demo.Funky.Courses.Api.Tests/bin/Debug/net6.0/
 
@@ -10,3 +10,5 @@ Demo.Funky.Courses.Api.Tests/obj/Debug/net6.0/
 Demo.Funky.Courses.Api/bin/Debug/net6.0/
 
 Demo.Funky.Courses.Api.Tests/obj/
+
+coursedata/
