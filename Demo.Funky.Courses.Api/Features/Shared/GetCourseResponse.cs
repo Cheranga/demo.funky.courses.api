@@ -1,4 +1,6 @@
-﻿namespace Demo.Funky.Courses.Api.Features.Shared;
+﻿using LanguageExt;
+
+namespace Demo.Funky.Courses.Api.Features.Shared;
 
 public class GetCourseResponse
 {
@@ -9,5 +11,17 @@ public class GetCourseResponse
     {
         Id = id;
         Name = name;
+    }
+}
+
+public class ErrorResponse
+{
+    public int ErrorCode { get; }
+    public Lst<string> Errors { get; }
+
+    public ErrorResponse(int errorCode, Lst<string> errors)
+    {
+        ErrorCode = errorCode;
+        Errors = errors;
     }
 }

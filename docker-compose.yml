@@ -8,7 +8,8 @@ services:
     depends_on:
       - database      
     environment:
-      ASPNETCORE_ENVIRONMENT: "Development"      
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DatabaseConfig__DatabaseConnectionString: "Server=database,1433;Database=CoursesDb;User Id=SA;Password=Pa55word123!"
   
   database:
     image: mcr.microsoft.com/mssql/server:2019-latest
