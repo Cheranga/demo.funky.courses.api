@@ -1,6 +1,6 @@
-﻿using Demo.Funky.Courses.Api.Features.GetCourseById;
-using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using MediatR;
+using CourseFeatures = Demo.Funky.Courses.Api.Features;
 
 namespace Demo.Funky.Courses.Api.Extensions;
 
@@ -20,11 +20,12 @@ public static class WebApplicationBuilderExtensions
     private static void RegisterConfigurations(IServiceCollection services, ConfigurationManager configuration)
     {
         var databaseConfig = configuration.GetSection(nameof(DatabaseConfig)).Get<DatabaseConfig>();
-        services.AddSingleton<DatabaseConfig>(databaseConfig);
+        services.AddSingleton(databaseConfig);
     }
 
     private static void RegisterDataAccess(IServiceCollection services)
     {
-        services.AddSingleton<IQueryHandler<Query, CourseDataModel>, QueryHandler>();
+        services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseById.Query, CourseDataModel>, CourseFeatures.GetCourseById.QueryHandler>();
+        services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseByName.Query, CourseDataModel>, CourseFeatures.GetCourseByName.QueryHandler>();
     }
 }

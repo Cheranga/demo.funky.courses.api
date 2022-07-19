@@ -14,7 +14,7 @@ public class Controller : ControllerBase
     }
     
     [HttpGet("api/courses/id/{courseId}")]
-    public async Task<IActionResult> GetCourseByNameAsync([FromRoute] string courseId)
+    public async Task<IActionResult> GetCourseByIdAsync([FromRoute] string courseId)
     {
         return (await _mediator.Send(new Request(courseId))).ToActionResult();
     }

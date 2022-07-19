@@ -1,4 +1,4 @@
-﻿using Demo.Funky.Courses.Api.Features.GetCourseById;
+﻿using Demo.Funky.Courses.Api.Features.GetCourseByName;
 using Demo.Funky.Courses.Api.Features.Shared;
 using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentAssertions;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using static LanguageExt.Prelude;
 
-namespace Demo.Funky.Courses.Api.Tests.Features.GetCourseById;
+namespace Demo.Funky.Courses.Api.Tests.Features.GetCourseByName;
 
 public class RequestHandlerTests
 {
@@ -22,7 +22,7 @@ public class RequestHandlerTests
         mockedQueryHandler.Setup(x => x.GetAsync(It.IsAny<Query>())).Returns(LanguageExt.Aff<CourseDataModel>.Success(courseDataModel));
 
         var handler = new RequestHandler(mockedQueryHandler.Object, Mock.Of<ILogger<RequestHandler>>());
-        (await handler.Handle(new Request(courseDataModel.Id), CancellationToken.None))
+        (await handler.Handle(new Request(courseDataModel.Name), CancellationToken.None))
             .Match(
                 Left: error => error.Should().BeNull(),
                 Right: response =>
