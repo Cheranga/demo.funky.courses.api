@@ -6,7 +6,8 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - database      
+      - database
+      - dbsetup
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       DatabaseConfig__DatabaseConnectionString: "Server=database,1433;Database=CoursesDb;User Id=SA;Password=Pa55word123!"
@@ -22,4 +23,16 @@ services:
       - ./coursedata/data:/var/opt/mssql/data
       - ./coursedata/logs:/var/opt/mssql/log
       - ./coursedata/secrets:/var/opt/mssql/secrets
+        
+  dbsetup:
+    build:
+      dockerfile: Demo.Funky.Courses.DbSetup/Dockerfile
+    depends_on:
+      - database
+    environment:
+      SERVER_NAME: "database"
+      USERNAME: "sa"
+      PASSWORD: "Pa55word123!"
+      DATABASE_NAME: "CoursesDb"
+    restart: on-failure
   

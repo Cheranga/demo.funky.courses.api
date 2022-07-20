@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Funky.Courses.Api", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Funky.Courses.Api.Tests", "Demo.Funky.Courses.Api.Tests\Demo.Funky.Courses.Api.Tests.csproj", "{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Funky.Courses.DbSetup", "Demo.Funky.Courses.DbSetup\Demo.Funky.Courses.DbSetup.csproj", "{51BFEB53-3619-4C19-9513-1430BA29095C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E186967-3D1C-4EB5-AF5D-097F3A5CDFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51BFEB53-3619-4C19-9513-1430BA29095C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51BFEB53-3619-4C19-9513-1430BA29095C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51BFEB53-3619-4C19-9513-1430BA29095C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51BFEB53-3619-4C19-9513-1430BA29095C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

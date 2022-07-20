@@ -12,3 +12,9 @@ Demo.Funky.Courses.Api/bin/Debug/net6.0/
 Demo.Funky.Courses.Api.Tests/obj/
 
 coursedata/
+
+Demo.Funky.Courses.DbSetup/bin/Debug/net6.0/
+
+Demo.Funky.Courses.DbSetup/obj/Debug/net6.0/
+
+Demo.Funky.Courses.DbSetup/obj/
