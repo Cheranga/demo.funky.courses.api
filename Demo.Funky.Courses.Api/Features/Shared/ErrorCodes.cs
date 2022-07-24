@@ -3,6 +3,7 @@
 public class ErrorCodes
 {
     public const int CommandError = 666;
+    public const int InvalidRequest = 400;
     public const int CourseNotFound = 404;
     public const int DataAccessError = 500;
     public const int CreateCourseDataAccessError = 501;

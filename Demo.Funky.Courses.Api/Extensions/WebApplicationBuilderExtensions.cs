@@ -1,4 +1,6 @@
 ﻿using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+using FluentValidation;
+using LanguageExt;
 using MediatR;
 using CourseFeatures = Demo.Funky.Courses.Api.Features;
 
@@ -12,6 +14,7 @@ public static class WebApplicationBuilderExtensions
         var configuration = builder.Configuration;
         
         services.AddMediatR(typeof(WebApplicationBuilderExtensions).Assembly);
+        services.AddValidatorsFromAssembly(typeof(WebApplicationBuilderExtensions).Assembly);
 
         RegisterConfigurations(services, configuration);
         RegisterDataAccess(services);
