@@ -1,6 +1,4 @@
-﻿using LanguageExt;
-
-namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 
 public class CourseDataModel
 {

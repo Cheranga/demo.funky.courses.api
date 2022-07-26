@@ -1,13 +1,10 @@
-﻿using LanguageExt;
-
-namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 
 public interface ICommand
 {
-    
 }
 
-public interface ICommandHandler<in TCommand> where TCommand:ICommand
+public interface ICommandHandler<in TCommand> where TCommand : ICommand
 {
     Aff<string> ExecuteAsync(TCommand command);
 }

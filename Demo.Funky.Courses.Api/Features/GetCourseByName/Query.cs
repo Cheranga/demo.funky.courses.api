@@ -2,4 +2,4 @@
 
 namespace Demo.Funky.Courses.Api.Features.GetCourseByName;
 
-public record Query (string Name) : IQuery;
+public sealed record Query(string Name) : IQuery;

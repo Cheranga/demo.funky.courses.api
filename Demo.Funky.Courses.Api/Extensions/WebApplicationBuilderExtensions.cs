@@ -1,6 +1,5 @@
 ﻿using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentValidation;
-using LanguageExt;
 using MediatR;
 using CourseFeatures = Demo.Funky.Courses.Api.Features;
 
