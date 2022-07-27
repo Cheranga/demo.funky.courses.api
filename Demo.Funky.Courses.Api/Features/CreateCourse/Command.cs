@@ -2,4 +2,4 @@
 
 namespace Demo.Funky.Courses.Api.Features.CreateCourse;
 
-public record Command (string Name, DateTime EnrollmentDate) : ICommand;
+public sealed record Command(string Name, DateTime EnrollmentDate) : ICommand;
