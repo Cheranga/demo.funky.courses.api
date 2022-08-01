@@ -1,4 +1,5 @@
-﻿using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿using Demo.Funky.Courses.Api.Features.GetCourseById;
+using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentValidation;
 using MediatR;
 using CourseFeatures = Demo.Funky.Courses.Api.Features;
@@ -27,6 +28,7 @@ public static class WebApplicationBuilderExtensions
 
     private static void RegisterDataAccess(IServiceCollection services)
     {
+        services.AddSingleton<ISqlQueryManager, SqlQueryManager>();
         services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseById.Query, CourseDataModel>, CourseFeatures.GetCourseById.QueryHandler>();
         services.AddSingleton<IQueryHandler<CourseFeatures.GetCourseByName.Query, CourseDataModel>, CourseFeatures.GetCourseByName.QueryHandler>();
         services.AddSingleton<ICommandHandler<CourseFeatures.CreateCourse.Command>, CourseFeatures.CreateCourse.CommandHandler>();
