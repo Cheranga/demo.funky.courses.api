@@ -22,6 +22,6 @@ public sealed class QueryHandler : IQueryHandler<Query, CourseDataModel>
         _config.DatabaseConnectionString.UseOpenConnection(
             connection =>
                 from optionalCourseData in connection.QueryFirstOrNone<CourseDataModel, Query>(SqlStatement, query)
-                from courseData in optionalCourseData.ToAff(Error.New(ErrorCodes.CourseNotFound, ErrorMessages.CourseNotFound))
+                from courseData in optionalCourseData.ToAff(Error.New(ErrorCodes.NotFound, ErrorMessages.NotFound))
                 select courseData);
 }

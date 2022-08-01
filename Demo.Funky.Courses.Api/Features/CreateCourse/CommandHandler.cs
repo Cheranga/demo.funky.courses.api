@@ -20,7 +20,7 @@ public sealed class CommandHandler : ICommandHandler<Command>
 
     private static Aff<string> FindCourseId(SqlConnection connection, Command command) =>
         from optionalCourse in connection.QueryFirstOrNone<CourseDataModel, Command>(CommandText, command)
-        from courseData in optionalCourse.ToAff(Error.New(ErrorCodes.CourseNotFound, "Failed to find course"))
+        from courseData in optionalCourse.ToAff(Error.New(ErrorCodes.NotFound, "Failed to find course"))
         from _1 in guard(
             string.IsNullOrWhiteSpace(courseData.Id),
             Error.New(ErrorCodes.CreateCourseDataAccessError, ErrorMessages.CreateCourseDataAccessError))

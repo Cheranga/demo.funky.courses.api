@@ -14,7 +14,7 @@ public static class ResponseHandler
         // TODO - we can handle multiple errors here as well
         error.Code switch
         {
-            ErrorCodes.CourseNotFound => new ObjectResult(new ErrorResponse(error.Code, Seq1(error.Message)))
+            ErrorCodes.NotFound => new ObjectResult(new ErrorResponse(error.Code, Seq1(error.Message)))
                 { StatusCode = (int)(HttpStatusCode.NotFound) },
             _ => new ObjectResult(new ErrorResponse(error.Code, Seq1(error.Message)))
                 { StatusCode = (int)(HttpStatusCode.InternalServerError) }

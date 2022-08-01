@@ -14,8 +14,6 @@ public sealed class QueryHandler : IQueryHandler<Query, CourseDataModel>
     private static string SqlStatement =>
         @"select * from tblCourses where id=@id";
 
-    public Aff<CourseDataModel> GetAsync(Query query) =>
-        from queryOperation in _queryManager.GetDataItem<Query, CourseDataModel>(SqlStatement, query)
-        from data in queryOperation.ToAff()
-        select data;
+    public Aff<CourseDataModel> GetAsync(Query query) => 
+        _queryManager.GetDataItem<Query, CourseDataModel>(SqlStatement, query);
 }

@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
+using Demo.Funky.Courses.Api.Extensions;
 using Demo.Funky.Courses.Api.Features.Shared;
 using LanguageExt.Common;
 
@@ -24,21 +25,15 @@ public sealed class SqlQueryManager : ISqlQueryManager
             return connection;
         });
 
-    private Aff<Either<Error, TData>> GetSingleItem<TQuery, TData>(SqlConnection connection, string sql, TQuery query) where TQuery : IQuery =>
-        AffMaybe<Either<Error, TData>>(async () =>
-        {
-            // TODO: make the error codes and messages generic
-            return await TryAsync(async () => await connection.QueryFirstOrDefaultAsync<TData>(sql, query))
-                .Match(
-                    model => model == null ? Either<Error, TData>.Left(Error.New(ErrorCodes.CourseNotFound, ErrorMessages.CourseNotFound)) : Either<Error, TData>.Right(model),
-                    exception =>
-                    {
-                        _logger.LogError(exception, "error occurred when accessing data");
-                        return Either<Error, TData>.Left(Error.New(ErrorCodes.DataAccessError, ErrorMessages.DataAccessError, exception));
-                    });
-        });
-
-    public Aff<Either<Error, TData>> GetDataItem<TQuery, TData>(string sql, TQuery query) where TQuery : IQuery =>
-        from operation in use(GetConnection(), con => GetSingleItem<TQuery, TData>(con, sql, query))
-        select operation;
+    public Aff<TData> GetDataItem<TQuery, TData>(string sql, TQuery query) where TQuery : IQuery =>
+        from data in use(GetConnection(), con => con.GetData<TQuery, TData>(sql, query))
+            .BiMap(
+                data => data,
+                error => error.ToException() switch
+                {
+                    ValueIsNullException => Error.New(ErrorCodes.NotFound, ErrorMessages.NotFound),
+                    _ => Error.New(ErrorCodes.DataAccessError, ErrorMessages.DataAccessError)
+                }
+            )
+        select data;
 }
