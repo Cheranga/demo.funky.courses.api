@@ -1,9 +1,7 @@
 ﻿using Demo.Funky.Courses.Api.Features.GetCourseById;
-using Demo.Funky.Courses.Api.Features.Shared;
 using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentAssertions;
 using LanguageExt;
-using LanguageExt.Common;
 using Microsoft.Extensions.Logging;
 using Moq;
 using static LanguageExt.Prelude;

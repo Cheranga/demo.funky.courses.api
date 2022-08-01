@@ -21,7 +21,7 @@ public sealed class RequestHandler : IRequestHandler<Request, Fin<GetCourseRespo
                 model => new GetCourseResponse(model.Id, model.Name),
                 error =>
                 {
-                    _logger.LogError(error.ToException(), "error occurred: {ErrorMessage}", error.Message);
+                    _logger.LogError(error.ToException(), "{ErrorCode}: {ErrorMessage}", error.Code, error.Message);
                     return error;
                 })
             .Run();

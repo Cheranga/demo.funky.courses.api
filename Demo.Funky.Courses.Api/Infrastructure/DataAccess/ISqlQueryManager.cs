@@ -1,7 +1,4 @@
-﻿using System.Data.SqlClient;
-using LanguageExt.Common;
-
-namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
+﻿namespace Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 
 public interface ISqlQueryManager
 {

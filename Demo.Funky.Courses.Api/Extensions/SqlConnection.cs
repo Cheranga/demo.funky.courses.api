@@ -1,9 +1,5 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
-using Demo.Funky.Courses.Api.Features.Shared;
-using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
-using LanguageExt.Common;
-using LanguageExt.SomeHelp;
 
 namespace Demo.Funky.Courses.Api.Extensions;
 
@@ -26,7 +22,4 @@ public static class SqlConnectionExt
         string command,
         TInput input) =>
         AffMaybe<Option<TReturn>>(async () => Optional(await connection.QueryFirstOrDefaultAsync<TReturn>(command, input)));
-
-    public static Aff<TData> GetData<TQuery, TData>(this SqlConnection connection, string sql, TQuery query) where TQuery : IQuery =>
-        AffMaybe<TData>(async () => await connection.QueryFirstOrDefaultAsync<TData>(sql, query));
 }
