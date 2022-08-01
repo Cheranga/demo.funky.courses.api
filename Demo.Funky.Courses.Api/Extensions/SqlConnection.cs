@@ -21,5 +21,5 @@ public static class SqlConnectionExt
         this SqlConnection connection,
         string command,
         TInput input) =>
-        AffMaybe<Option<TReturn>>(async () => Optional(await connection.QueryFirstOrDefaultAsync(command, input)));
+        AffMaybe<Option<TReturn>>(async () => Optional(await connection.QueryFirstOrDefaultAsync<TReturn>(command, input)));
 }

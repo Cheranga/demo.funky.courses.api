@@ -2,9 +2,11 @@
 using Demo.Funky.Courses.Api.Features.Shared;
 using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentAssertions;
+using LanguageExt;
 using Microsoft.Extensions.Logging;
 using Moq;
 using static LanguageExt.Prelude;
+using Query = Demo.Funky.Courses.Api.Features.GetCourseByName.Query;
 
 namespace Demo.Funky.Courses.Api.Tests.Features.GetCourseByName;
 
@@ -36,16 +38,15 @@ public class RequestHandlerTests
     [Fact]
     public async Task CourseUnavailable()
     {
-        var courseDataModel = new CourseDataModel();
-        var mockedQueryHandler = new Mock<IQueryHandler<Query, CourseDataModel>>();
-        mockedQueryHandler.Setup(x => x.GetAsync(It.IsAny<Query>()))
-            .Returns(LanguageExt.Aff<CourseDataModel>.Success(courseDataModel));
+        var mockedQueryHandler = new Mock<IQueryHandler<Api.Features.GetCourseById.Query, CourseDataModel>>();
+        mockedQueryHandler.Setup(x => x.GetAsync(It.IsAny<Api.Features.GetCourseById.Query>()))
+            .Returns((Option<CourseDataModel>.None).ToAff);
 
-        var handler = new RequestHandler(mockedQueryHandler.Object, Mock.Of<ILogger<RequestHandler>>());
-        (await handler.Handle(new Request("C#"), CancellationToken.None))
+        var handler = new Api.Features.GetCourseById.RequestHandler(mockedQueryHandler.Object, Mock.Of<ILogger<Api.Features.GetCourseById.RequestHandler>>());
+        (await handler.Handle(new Api.Features.GetCourseById.Request("C#"), CancellationToken.None))
             .Match(
                 response => response.Should().BeNull(),
-                error => error.Code.Should().Be(ErrorCodes.CourseNotFound));
+                error => error.Code.Should().BeLessThan(0));
     }
 
     [Fact]
@@ -60,6 +61,10 @@ public class RequestHandlerTests
         (await handler.Handle(new Request("C#"), CancellationToken.None))
             .Match(
                 response => response.Should().BeNull(),
-                error => error.Code.Should().Be(ErrorCodes.DataAccessError));
+                error =>
+                {
+                    error.ToException().Should().BeOfType<Exception>();
+                    error.ToException().Message.Should().Be("data access error");
+                });
     }
 }
