@@ -21,7 +21,7 @@ public class RequestHandler : IRequestHandler<Request, Fin<GetCourseResponse>>
                 model => new GetCourseResponse(model.Id, model.Name),
                 error =>
                 {
-                    _logger.LogError(error.ToException(), ErrorMessages.DataAccessError);
+                    _logger.LogError(error.ToException(), "{ErrorCode}: {ErrorMessage}", error.Code, error.Message);
                     return error;
                 })
             .Run();

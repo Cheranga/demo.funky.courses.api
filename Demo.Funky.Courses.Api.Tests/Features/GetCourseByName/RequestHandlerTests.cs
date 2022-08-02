@@ -1,5 +1,4 @@
 ﻿using Demo.Funky.Courses.Api.Features.GetCourseByName;
-using Demo.Funky.Courses.Api.Features.Shared;
 using Demo.Funky.Courses.Api.Infrastructure.DataAccess;
 using FluentAssertions;
 using LanguageExt;
