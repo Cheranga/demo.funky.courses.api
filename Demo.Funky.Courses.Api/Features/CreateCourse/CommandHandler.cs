@@ -22,7 +22,7 @@ public sealed class CommandHandler : ICommandHandler<Command>
         from optionalCourse in connection.QueryFirstOrNone<CourseDataModel, Command>(CommandText, command)
         from courseData in optionalCourse.ToAff(Error.New(ErrorCodes.NotFound, "Failed to find course"))
         from _1 in guard(
-            string.IsNullOrWhiteSpace(courseData.Id),
+            !string.IsNullOrWhiteSpace(courseData.Id),
             Error.New(ErrorCodes.CreateCourseDataAccessError, ErrorMessages.CreateCourseDataAccessError))
         select courseData.Id;
 

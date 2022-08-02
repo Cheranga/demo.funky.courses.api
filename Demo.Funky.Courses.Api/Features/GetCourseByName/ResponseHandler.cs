@@ -16,7 +16,8 @@ public static class ResponseHandler
         {
             ErrorCodes.NotFound => new ObjectResult(new ErrorResponse(error.Code, Seq1(error.Message)))
                 { StatusCode = (int)(HttpStatusCode.NotFound) },
-            _ => new ObjectResult(new ErrorResponse(error.Code, Seq1(error.Message)))
-                { StatusCode = (int)(HttpStatusCode.InternalServerError) }
+            _ => 
+                error.Code < 0 ? new ObjectResult(new ErrorResponse(ErrorCodes.DataAccessError, toSeq(new[] { ErrorMessages.DataAccessError }))) { StatusCode = (int)(HttpStatusCode.InternalServerError) } :
+                    new ObjectResult(new ErrorResponse(error.Code, toSeq(new[] { error.Message }))) { StatusCode = (int)(HttpStatusCode.InternalServerError) }
         };
 }
